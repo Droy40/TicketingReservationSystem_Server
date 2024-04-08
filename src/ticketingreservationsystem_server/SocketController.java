@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import ticketingreservationsystem_server.Model.User;
@@ -51,9 +52,16 @@ public class SocketController extends Thread{
         try {
             String messageFromClient = this.in.readLine();
             String[] messages = messageFromClient.split("~");
+            String MessageToClient;
             switch (messages[0]) {
                 case "LOGIN":
-                    String MessageToClient = User.UserLogin(messages[1], messages[2]);
+                    MessageToClient = User.UserLogin(messages[1], messages[2]);
+                    SendMessageToClient(MessageToClient);
+                    break;
+                case "REGISTER":
+                    String[] dob = messages[4].split("/");
+                    Date dobDate = new Date(Integer.parseInt(dob[2]), Integer.parseInt(dob[1]), Integer.parseInt(dob[0]));
+                    MessageToClient = User.UserRegister(messages[1], messages[2], messages[3], dobDate, messages[5]);
                     SendMessageToClient(MessageToClient);
                     break;
                 default:

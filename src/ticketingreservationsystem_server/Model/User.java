@@ -118,6 +118,19 @@ public class User {
         return "LOGIN-GAGAL";
     }
     
+    public static String UserRegister(String fullname, String username, String email, Date dob, String password){
+        for(User user : Data.Users){
+            if(user.getUsername().equals(username)){
+                return "REGISTER-GAGAL";
+            }
+        }
+        
+        int id = Data.Users.size() + 1;        
+        User newUser = new User(id,fullname,username,password,email,dob, new Date());
+        Data.Users.add(newUser);
+        
+        return "REGISTER-SUKSES";
+    }
     
     @Override
     public String toString(){
