@@ -16,8 +16,8 @@ public class Ticket {
     private String name;
     private String desc;
     private double ticketPrice;
-    private Date createdDate;
-    private Date updatedDate;
+//    private Date createdDate;
+//    private Date updatedDate;
     private Passenger passenger;
     
     
@@ -26,8 +26,8 @@ public class Ticket {
         this.name = "";
         this.desc = "";
         this.ticketPrice = 0;
-        this.createdDate = new Date();
-        this.updatedDate = new Date(); 
+//        this.createdDate = new Date();
+//        this.updatedDate = new Date(); 
         this.passenger = new Passenger();
     }
 
@@ -36,8 +36,8 @@ public class Ticket {
         this.name = name;
         this.desc = desc;
         this.ticketPrice = ticketPrice;
-        this.createdDate = createdDate;
-        this.updatedDate = updatedDate;
+//        this.createdDate = createdDate;
+//        this.updatedDate = updatedDate;
         this.passenger = new Passenger(passenger.getTitle(), passenger.getFirstMiddleName(), passenger.getFamilyName(), passenger.getDob(), passenger.getNationality());
     }
 
@@ -75,21 +75,21 @@ public class Ticket {
         this.ticketPrice = ticketPrice;
     }
 
-    public Date getCreatedDate() {
-        return createdDate;
-    }
-
-    public void setCreatedDate(Date createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public Date getUpdatedDate() {
-        return updatedDate;
-    }
-
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
-    }
+//    public Date getCreatedDate() {
+//        return createdDate;
+//    }
+//
+//    public void setCreatedDate(Date createdDate) {
+//        this.createdDate = createdDate;
+//    }
+//
+//    public Date getUpdatedDate() {
+//        return updatedDate;
+//    }
+//
+//    public void setUpdatedDate(Date updatedDate) {
+//        this.updatedDate = updatedDate;
+//    }
 
     public Passenger getPassenger() {
         return passenger;

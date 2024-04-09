@@ -11,23 +11,23 @@ import java.util.Date;
  * @author Lenovo
  */
 public class FlightSchedule {
-    private Airline airline;
-    private Airport departureAirport;
-    private Airport arrivalAirport;
+    private String airline;
+    private String departureAirport;
+    private String arrivalAirport;
     private Date departureDate;
     private Date arrivalDate;
     private String seatClass;
 
     public FlightSchedule() {
-        this.airline = new Airline();
-        this.departureAirport = new Airport();
-        this.arrivalAirport = new Airport();
+        this.airline = "";
+        this.departureAirport = "";
+        this.arrivalAirport = "";
         this.departureDate = new Date();
         this.arrivalDate = new Date();
         this.seatClass = "";
     }
 
-    public FlightSchedule(Airline airline, Airport departureAirport, Airport arrivalAirport, Date departureDate, Date arrivalDate, String seatClass) {
+    public FlightSchedule(String airline, String departureAirport, String arrivalAirport, Date departureDate, Date arrivalDate, String seatClass) {
         this.airline = airline;
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
@@ -36,27 +36,27 @@ public class FlightSchedule {
         this.seatClass = seatClass;
     }
 
-    public Airline getAirline() {
+    public String getAirline() {
         return airline;
     }
 
-    public void setAirline(Airline airline) {
+    public void setAirline(String airline) {
         this.airline = airline;
     }
 
-    public Airport getDepartureAirport() {
+    public String getDepartureAirport() {
         return departureAirport;
     }
 
-    public void setDepartureAirport(Airport departureAirport) {
+    public void setDepartureAirport(String departureAirport) {
         this.departureAirport = departureAirport;
     }
 
-    public Airport getArrivalAirport() {
+    public String getArrivalAirport() {
         return arrivalAirport;
     }
 
-    public void setArrivalAirport(Airport arrivalAirport) {
+    public void setArrivalAirport(String arrivalAirport) {
         this.arrivalAirport = arrivalAirport;
     }
 

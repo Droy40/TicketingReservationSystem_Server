@@ -4,7 +4,9 @@
  */
 package ticketingreservationsystem_server.Model;
 
+import java.util.ArrayList;
 import java.util.Date;
+import ticketingreservationsystem_server.Data;
 
 /**
  *
@@ -39,6 +41,36 @@ public class PlaneTicket extends Ticket {
 
     public void setFlightSchedule(FlightSchedule flightSchedule) {
         this.flightSchedule = flightSchedule;
+    }
+    
+    public static String CariTiketPesawat(Date departureDate, String from, String to, String adult, String children, String infant, String seatClass){
+        ArrayList<FlightSchedule> flightSchedules = new ArrayList<>();
+        for (FlightSchedule flightSchedule : Data.FlightSchedules) {
+            if(flightSchedule.getDepartureAirport().equals(from) &&
+               flightSchedule.getArrivalAirport().equals(to) &&
+                flightSchedule.getDepartureDate().equals(departureDate) && 
+                    flightSchedule.getSeatClass().equals(seatClass)){
+                flightSchedules.add(flightSchedule);
+            }
+        }
+        ArrayList<String> TiketPesawats = new ArrayList<>();        
+        
+        for (FlightSchedule flightSchedule : flightSchedules) {
+            String tiketsString = flightSchedule.getDepartureDate().getDate() + "/" + flightSchedule.getDepartureDate().getMonth() + "/" + flightSchedule.getDepartureDate().getYear() + ","
+                             + from + "," + to + "," + seatClass + "," +flightSchedule.getAirline();
+            TiketPesawats.add(tiketsString);
+        }
+        
+        if(!TiketPesawats.isEmpty()){
+            TiketPesawats.add(0, "TIKET-PESAWAT-DITEMUKAN");
+        }
+        else{
+             TiketPesawats.add(0, "TIKET-PESAWAT-TIDAK-DITEMUKAN");
+        }
+        
+        String messages = String.join("~", TiketPesawats);
+        
+        return messages;
     }
     
     

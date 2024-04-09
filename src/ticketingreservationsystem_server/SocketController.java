@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ticketingreservationsystem_server.Model.PlaneTicket;
 import ticketingreservationsystem_server.Model.User;
 
 /**
@@ -28,8 +29,8 @@ public class SocketController extends Thread{
     public SocketController(Socket clientSocket) {
         try {
             this.clientSocket = clientSocket;
-            this.in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            this.out = new DataOutputStream(clientSocket.getOutputStream());
+            this.in = new BufferedReader(new InputStreamReader(this.clientSocket.getInputStream()));
+            this.out = new DataOutputStream(this.clientSocket.getOutputStream());
         } catch (IOException ex) {
             Logger.getLogger(SocketController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -63,6 +64,18 @@ public class SocketController extends Thread{
                     Date dobDate = new Date(Integer.parseInt(dob[2]), Integer.parseInt(dob[1]), Integer.parseInt(dob[0]));
                     MessageToClient = User.UserRegister(messages[1], messages[2], messages[3], dobDate, messages[5]);
                     SendMessageToClient(MessageToClient);
+                    break;
+                case "CARI-TIKET-PESAWAT":
+                    String[] departrure = messages[0].split("/");
+                    Date departureDate = new Date(Integer.parseInt(departrure[2]),Integer.parseInt(departrure[1]) , Integer.parseInt(departrure[0]));
+                    MessageToClient = PlaneTicket.CariTiketPesawat(departureDate, messages[2], messages[3], messages[4], messages[5], messages[6], messages[7]);
+                    SendMessageToClient(MessageToClient);
+                    break;
+                case "CARI-TIKET-KAPAL":
+                    break;
+                case "CARI-TIKET-KERETA":
+                    break;
+                case "CARI-SEWA-MOBIL":
                     break;
                 default:
                     throw new AssertionError();

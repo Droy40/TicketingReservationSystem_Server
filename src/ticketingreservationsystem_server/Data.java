@@ -5,6 +5,9 @@
 package ticketingreservationsystem_server;
 
 import java.util.ArrayList;
+import ticketingreservationsystem_server.Model.FlightSchedule;
+import ticketingreservationsystem_server.Model.Reservation;
+import ticketingreservationsystem_server.Model.Ticket;
 import ticketingreservationsystem_server.Model.User;
 
 /**
@@ -13,4 +16,7 @@ import ticketingreservationsystem_server.Model.User;
  */
 public class Data {
     public static ArrayList<User> Users;
+    public static ArrayList<FlightSchedule> FlightSchedules;
+    public static ArrayList<Ticket> Tickets;
+    public static ArrayList<Reservation> Reservations;
 }
