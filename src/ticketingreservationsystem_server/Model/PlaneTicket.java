@@ -56,8 +56,8 @@ public class PlaneTicket extends Ticket {
         ArrayList<String> TiketPesawats = new ArrayList<>();        
         
         for (FlightSchedule flightSchedule : flightSchedules) {
-            String tiketsString = flightSchedule.getDepartureDate().getDate() + "/" + flightSchedule.getDepartureDate().getMonth() + "/" + flightSchedule.getDepartureDate().getYear() + ","
-                             + from + "," + to + "," + seatClass + "," +flightSchedule.getAirline();
+            String tiketsString =  flightSchedule.getFlightNumber() + "," + flightSchedule.getDepartureDate().getDate() + "/" + flightSchedule.getDepartureDate().getMonth() + "/" + flightSchedule.getDepartureDate().getYear() + ","
+                             + from + "," + to + "," + seatClass + "," +flightSchedule.getAirline() + "," + String.valueOf(flightSchedule.getPrice());
             TiketPesawats.add(tiketsString);
         }
         

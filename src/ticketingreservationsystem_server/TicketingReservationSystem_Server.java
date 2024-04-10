@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ticketingreservationsystem_server.Model.FlightSchedule;
 import ticketingreservationsystem_server.Model.User;
-import static ticketingreservationsystem_server.SocketController.clients;
 
 /**
  *
@@ -47,6 +47,9 @@ public class TicketingReservationSystem_Server extends Thread{
         SocketController.clients = new ArrayList<SocketController>();
         
         Data.Users = new ArrayList<>();
+        Data.Tickets = new  ArrayList<>();
+        Data.Reservations = new ArrayList<>();
+        Data.FlightSchedules = new ArrayList<>();
     }
     
     public static void AddData(){
@@ -104,6 +107,54 @@ public class TicketingReservationSystem_Server extends Thread{
             
             Data.Users.add(new User(Data.Users.size() + 1,FullNames[i],usernames[i],passwords[i],emails[i],new Date(2020-1900, 5, 10),new Date(2020-1900, 5, 10)));
         }
+        
+        String[] airlines = {
+            "InnoZ",
+            "Meemm",
+            "Aimbu",
+            "Yodoo",
+            "Rhycero",
+            "Realcube",
+            "Topiczoom",
+            "Jabbertype",
+            "Realcube",
+            "Quatz"
+        };
+        
+        String[] departureAirports = {
+        "Kurundi Airport",
+        "Marion Downs Airport",
+        "Hesler Noble Field",
+        "Inhaminga Airport",
+        "Colmar-Houssen Airport",
+        "Fremont County Airport",
+        "Sharpe AAF",
+        "Newcastle Airport",
+        "South Bimini Airport",
+        "Juvenal Loureiro Cardoso Airport"
+        };
+        
+        String[] arrivalAirports = {
+        "Udon Thani Airport",
+        "Dr. Antonio Nicolás Briceño Airport",
+        "Likiep Airport",
+        "Swansea Airport",
+        "Port Bailey Seaplane Base",
+        "Lethbridge County Airport",
+        "Grabtsevo Airport",
+        "North Fork Valley Airport",
+        "Boone Municipal Airport",
+        "Pauk Airport"
+        };
+        
+        for(int i = 0; i < airlines.length; i++){
+            Data.FlightSchedules.add(new FlightSchedule(passwords[i],airlines[i] + " Airline",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"Economy",1000000));
+            Data.FlightSchedules.add(new FlightSchedule(passwords[i],airlines[i] + " Airline",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"Premium Economy",1000000));
+            Data.FlightSchedules.add(new FlightSchedule(passwords[i],airlines[i] + " Airline",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"Business",1000000));
+            Data.FlightSchedules.add(new FlightSchedule(passwords[i],airlines[i] + " Airline",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"First Class",1000000));
+        }
+        
+        
         
     }
 

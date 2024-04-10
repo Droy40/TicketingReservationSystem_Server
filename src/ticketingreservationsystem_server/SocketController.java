@@ -54,6 +54,8 @@ public class SocketController extends Thread{
             String messageFromClient = this.in.readLine();
             String[] messages = messageFromClient.split("~");
             String MessageToClient;
+            String[] departure;
+            Date departureDate;
             switch (messages[0]) {
                 case "LOGIN":
                     MessageToClient = User.UserLogin(messages[1], messages[2]);
@@ -66,15 +68,23 @@ public class SocketController extends Thread{
                     SendMessageToClient(MessageToClient);
                     break;
                 case "CARI-TIKET-PESAWAT":
-                    String[] departrure = messages[0].split("/");
-                    Date departureDate = new Date(Integer.parseInt(departrure[2]),Integer.parseInt(departrure[1]) , Integer.parseInt(departrure[0]));
+                    String[] departrure = messages[1].split("/");
+                    departureDate = new Date(Integer.parseInt(departrure[2]),Integer.parseInt(departrure[1]) , Integer.parseInt(departrure[0]));
                     MessageToClient = PlaneTicket.CariTiketPesawat(departureDate, messages[2], messages[3], messages[4], messages[5], messages[6], messages[7]);
                     SendMessageToClient(MessageToClient);
                     break;
                 case "CARI-TIKET-KAPAL":
+                    departrure = messages[1].split("/");
+                    departureDate = new Date(Integer.parseInt(departrure[2]),Integer.parseInt(departrure[1]) , Integer.parseInt(departrure[0]));
+                    MessageToClient = PlaneTicket.CariTiketPesawat(departureDate, messages[2], messages[3], messages[4], messages[5], messages[6], messages[7]);
+                    SendMessageToClient(MessageToClient);
                     break;
                 case "CARI-TIKET-KERETA":
-                    break;
+                    departrure = messages[1].split("/");
+                    departureDate = new Date(Integer.parseInt(departrure[2]),Integer.parseInt(departrure[1]) , Integer.parseInt(departrure[0]));
+                    MessageToClient = PlaneTicket.CariTiketPesawat(departureDate, messages[2], messages[3], messages[4], messages[5], messages[6], messages[7]);
+                    SendMessageToClient(MessageToClient);
+                    break;                    
                 case "CARI-SEWA-MOBIL":
                     break;
                 default:

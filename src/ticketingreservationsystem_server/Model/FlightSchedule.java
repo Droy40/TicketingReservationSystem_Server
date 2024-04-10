@@ -11,29 +11,32 @@ import java.util.Date;
  * @author Lenovo
  */
 public class FlightSchedule {
+    private String flightNumber;
     private String airline;
     private String departureAirport;
     private String arrivalAirport;
     private Date departureDate;
-    private Date arrivalDate;
     private String seatClass;
+    private int price;
 
     public FlightSchedule() {
+        this.flightNumber = "";
         this.airline = "";
         this.departureAirport = "";
         this.arrivalAirport = "";
         this.departureDate = new Date();
-        this.arrivalDate = new Date();
         this.seatClass = "";
+        this.price = 0;
     }
 
-    public FlightSchedule(String airline, String departureAirport, String arrivalAirport, Date departureDate, Date arrivalDate, String seatClass) {
+    public FlightSchedule(String flightNumber , String airline, String departureAirport, String arrivalAirport, Date departureDate, String seatClass, int price) {
+        this.flightNumber = flightNumber;
         this.airline = airline;
         this.departureAirport = departureAirport;
         this.arrivalAirport = arrivalAirport;
         this.departureDate = departureDate;
-        this.arrivalDate = arrivalDate;
         this.seatClass = seatClass;
+        this.price = price;
     }
 
     public String getAirline() {
@@ -68,20 +71,28 @@ public class FlightSchedule {
         this.departureDate = departureDate;
     }
 
-    public Date getArrivalDate() {
-        return arrivalDate;
-    }
-
-    public void setArrivalDate(Date arrivalDate) {
-        this.arrivalDate = arrivalDate;
-    }
-
     public String getSeatClass() {
         return seatClass;
     }
 
     public void setSeatClass(String seatClass) {
         this.seatClass = seatClass;
+    }
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public String getFlightNumber() {
+        return flightNumber;
+    }
+
+    public void setFlightNumber(String flightNumber) {
+        this.flightNumber = flightNumber;
     }
     
     
