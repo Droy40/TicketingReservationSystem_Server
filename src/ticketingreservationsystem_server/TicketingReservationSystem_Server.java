@@ -148,10 +148,11 @@ public class TicketingReservationSystem_Server extends Thread{
         };
         
         for(int i = 0; i < airlines.length; i++){
-            Data.FlightSchedules.add(new FlightSchedule(passwords[i],airlines[i] + " Airline",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"Economy",1000000));
-            Data.FlightSchedules.add(new FlightSchedule(passwords[i],airlines[i] + " Airline",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"Premium Economy",1000000));
-            Data.FlightSchedules.add(new FlightSchedule(passwords[i],airlines[i] + " Airline",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"Business",1000000));
-            Data.FlightSchedules.add(new FlightSchedule(passwords[i],airlines[i] + " Airline",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"First Class",1000000));
+            Data.FlightSchedules.add(new FlightSchedule(String.valueOf(Data.FlightSchedules.size() + 1),airlines[i] + " Airline",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"Economy",1000000));
+            Data.FlightSchedules.add(new FlightSchedule(String.valueOf(Data.FlightSchedules.size() + 1),airlines[i] + " Airline2",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"Economy",2000000));
+            Data.FlightSchedules.add(new FlightSchedule(String.valueOf(Data.FlightSchedules.size() + 1),airlines[i] + " Airline",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"Premium Economy",1000000));
+            Data.FlightSchedules.add(new FlightSchedule(String.valueOf(Data.FlightSchedules.size() + 1),airlines[i] + " Airline",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"Business",1000000));
+            Data.FlightSchedules.add(new FlightSchedule(String.valueOf(Data.FlightSchedules.size() + 1),airlines[i] + " Airline",departureAirports[i],arrivalAirports[i], new Date(2024-1900,3,11),"First Class",1000000));
         }
         
         

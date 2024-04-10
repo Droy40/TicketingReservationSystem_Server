@@ -43,6 +43,9 @@ public class PlaneTicket extends Ticket {
         this.flightSchedule = flightSchedule;
     }
     
+//Request tiket pesawat : "CARI-TIKET-PESAWAT~DATE/MONTH/YEAR~FROM~TO~ADULT~CHILDREN~INFANT~SEATCLASS"
+    // RESPONSE JIKA TIKET DITEMUKAN : "TIKET-PESAWAT-DITEMUKAN~TIKET1(FLIGHTNUMBER,DATE/MONTH/YEAR,FROM,TO,SEATCLASS,AIRLINE,PRICE)~TIKET2~TIKET SETERUSNYA"
+    // RESPONSE JIKA TIKET TIDAK DITEMUKAN : "TIKET-PESAWAT-TIDAK-DITEMUKAN"
     public static String CariTiketPesawat(Date departureDate, String from, String to, String adult, String children, String infant, String seatClass){
         ArrayList<FlightSchedule> flightSchedules = new ArrayList<>();
         for (FlightSchedule flightSchedule : Data.FlightSchedules) {
