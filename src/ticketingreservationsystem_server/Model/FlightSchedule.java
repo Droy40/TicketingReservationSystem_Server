@@ -5,6 +5,7 @@
 package ticketingreservationsystem_server.Model;
 
 import java.util.Date;
+import ticketingreservationsystem_server.Data;
 
 /**
  *
@@ -95,7 +96,14 @@ public class FlightSchedule {
         this.flightNumber = flightNumber;
     }
     
-    
+    public static FlightSchedule CariFlightSchedule(String id ){
+        for (FlightSchedule flightSchedule : Data.FlightSchedules) {
+            if(flightSchedule.getFlightNumber().equals(id)){
+                return flightSchedule;
+            }
+        }
+        return  null;
+    }
     
     
     

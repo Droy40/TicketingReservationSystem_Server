@@ -7,6 +7,7 @@ package ticketingreservationsystem_server.Model;
 import java.util.ArrayList;
 import java.util.Date;
 import ticketingreservationsystem_server.Data;
+import ticketingreservationsystem_server.SocketController;
 /**
  *
  * @author Lenovo
@@ -108,9 +109,10 @@ public class User {
     //login request message = "LOGIN~username~password"
     //login sukses response message = "LOGIN-SUKSES~UserID~Userfullname~Userusername~Useremail~Userdob(dd-mm-yyyy)~Usermembersince(dd-mm-yy)" 
     //login gagal response message  = "LOGIN-GAGAL"
-    public static String UserLogin(String Username, String Password){
+    public static String UserLogin(SocketController sc,String Username, String Password){
         for (User user : Data.Users) {
             if(user.getUsername().equals(Username) && user.getPassword().equals(Password)){
+                sc.userLogin = user;
                 String[] messages = {"LOGIN-SUKSES",String.valueOf(user.getId()), user.getFullname() , user.getUsername(), user.getEmail(), user.getDob().getDate() + "/" + user.getDob().getMonth() + "/" + user.getDob().getYear(),user.getMember_since().getDate() + "/" + user.getMember_since().getMonth() + "/" + user.getMember_since().getYear()};
                 return String.join( "~", messages);
             }

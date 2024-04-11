@@ -13,6 +13,7 @@ import ticketingreservationsystem_server.Data;
  * @author Lenovo
  */
 public class PlaneTicket extends Ticket {
+    public static int seatCount = 0;
     private FlightSchedule flightSchedule;
     private String seat;
 
@@ -21,11 +22,13 @@ public class PlaneTicket extends Ticket {
         this.seat = "";
     }
 
-    public PlaneTicket(FlightSchedule flightSchedule, String seat, int id, String name, String desc, Date ticketDate, double ticketPrice, Date createdDate, Date updatedDate, Passenger passenger) {
-        super(id, name, desc, ticketDate, ticketPrice, createdDate, updatedDate, passenger);
+    public PlaneTicket(FlightSchedule flightSchedule, String seat, String id, double ticketPrice, Passenger passenger) {
+        super(id, ticketPrice, passenger);
         this.flightSchedule = flightSchedule;
         this.seat = seat;
     }
+
+    
 
     public String getSeat() {
         return seat;
@@ -76,7 +79,18 @@ public class PlaneTicket extends Ticket {
         return messages;
     }
     
+    public static PlaneTicket CariTicket(String id){
+        for (Ticket ticket : Data.Tickets) {
+            if(ticket.getId().equals(id)){
+                return (PlaneTicket)ticket;
+            }
+        }
+        return null;
+    }
     
+    public static int GenerateSeat(){
+        return seatCount++;
+    }
     
     
 }

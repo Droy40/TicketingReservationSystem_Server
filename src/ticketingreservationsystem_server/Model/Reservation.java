@@ -12,24 +12,26 @@ import java.util.Date;
  * @author Lenovo
  */
 public class Reservation {
+    private String id;
     private User user;
     private Date createdDate;
-    private Date updatedDate;   
     private ArrayList<Ticket> ticketList;
 
     public Reservation() {
+        this.id = "";
         this.user = null;
         this.ticketList = new ArrayList<Ticket>();
-        this.createdDate = new Date(0,0,0);
-        this.updatedDate = new Date(0,0,0);
+        this.createdDate = new Date();
     }
 
-    public Reservation(User user, Ticket ticket, int quantity, Date createdDate, Date updatedDate) {
+    public Reservation(String id,User user, ArrayList<Ticket> ticketList) {
+        this.id = id;
         this.user = user;
-        this.ticketList = new ArrayList<Ticket>();
-        this.createdDate = createdDate;
-        this.updatedDate = updatedDate;
+        this.ticketList = ticketList;
+        this.createdDate = new Date();       
     }    
+    
+    
     
     public User getUser() {
         return user;
@@ -55,12 +57,12 @@ public class Reservation {
         this.createdDate = createdDate;
     }
 
-    public Date getUpdatedDate() {
-        return updatedDate;
+    public String getId() {
+        return id;
     }
 
-    public void setUpdatedDate(Date updatedDate) {
-        this.updatedDate = updatedDate;
+    public void setId(String id) {
+        this.id = id;
     }
     
     

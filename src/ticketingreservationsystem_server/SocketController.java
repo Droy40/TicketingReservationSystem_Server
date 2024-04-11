@@ -13,7 +13,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ticketingreservationsystem_server.Model.FlightSchedule;
+import ticketingreservationsystem_server.Model.Passenger;
 import ticketingreservationsystem_server.Model.PlaneTicket;
+import ticketingreservationsystem_server.Model.Reservation;
+import ticketingreservationsystem_server.Model.Ticket;
 import ticketingreservationsystem_server.Model.User;
 
 /**
@@ -25,6 +29,7 @@ public class SocketController extends Thread{
     private Socket clientSocket;
     private BufferedReader in;
     private DataOutputStream out;
+    public User userLogin;
 
     public SocketController(Socket clientSocket) {
         try {
@@ -58,7 +63,7 @@ public class SocketController extends Thread{
             Date departureDate;
             switch (messages[0]) {
                 case "LOGIN":
-                    MessageToClient = User.UserLogin(messages[1], messages[2]);
+                    MessageToClient = User.UserLogin(this,messages[1], messages[2]);
                     SendMessageToClient(MessageToClient);
                     break;
                 case "REGISTER":
@@ -86,6 +91,31 @@ public class SocketController extends Thread{
                     SendMessageToClient(MessageToClient);
                     break;                    
                 case "CARI-SEWA-MOBIL":
+                    break;
+                    
+                case "BOOKING-TIKET-PESAWAT":
+                    String flightNumber = messages[1];
+                    ArrayList<Passenger> passengers = new ArrayList<>();
+                    for (int i = 2; i < messages.length; i++) {
+                        String[] passengerDetail = messages[i].split(",");
+                        String[] dobString = passengerDetail[4].split("/");
+                        Date passengerDob = new Date(Integer.parseInt(dobString[2])-1900, Integer.parseInt(dobString[1])-1, Integer.parseInt(dobString[0]));
+                        Passenger passenger = new Passenger(passengerDetail[0], passengerDetail[1], passengerDetail[2], passengerDetail[3], passengerDob, passengerDetail[5]);
+                        passengers.add(passenger);
+                    }
+                    
+                    FlightSchedule fs = FlightSchedule.CariFlightSchedule(flightNumber);
+                    
+                    ArrayList<Ticket> tickets = new ArrayList<>();
+                    for (Passenger passenger : passengers) {
+                        PlaneTicket pt = new PlaneTicket(fs, PlaneTicket.GenerateSeat() + "", Ticket.GenerateID() + "", fs.getPrice(), passenger);
+                        tickets.add(pt);
+                    }
+                    String reservationId = (Data.Reservations.size() + 1) + "";
+                    Reservation res = new Reservation(reservationId + "", this.userLogin, tickets);
+                    Data.Reservations.add(res);
+                    
+                    SendMessageToClient("BOOKING-TIKET-PESAWAT-BERHASIL~" + reservationId);
                     break;
                 default:
                     throw new AssertionError();

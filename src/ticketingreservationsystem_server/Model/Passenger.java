@@ -11,13 +11,15 @@ import java.util.Date;
  * @author Lenovo
  */
 public class Passenger {
+    private String passengerType;
     private String title;
     private String firstMiddleName;
     private String familyName;
     private Date dob;
     private String nationality;
 
-    public Passenger(String title, String firstMiddleName, String familyName, Date dob, String nationality) {
+    public Passenger(String passengerType,String title, String firstMiddleName, String familyName, Date dob, String nationality) {
+        this.passengerType = passengerType;
         this.title = title;
         this.firstMiddleName = firstMiddleName;
         this.familyName = familyName;
@@ -26,13 +28,13 @@ public class Passenger {
     }
 
     public Passenger() {
+        this.passengerType = "";
         this.title = "";
         this.firstMiddleName = "";
         this.familyName = "";
         this.dob = new Date();
         this.nationality = "";
-    }
-
+    }        
     public String getTitle() {
         return title;
     }
@@ -71,6 +73,14 @@ public class Passenger {
 
     public void setNationality(String nationality) {
         this.nationality = nationality;
+    }
+
+    public String getPassengerType() {
+        return passengerType;
+    }
+
+    public void setPassengerType(String passengerType) {
+        this.passengerType = passengerType;
     }
     
     
